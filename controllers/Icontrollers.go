@@ -1,3 +1,5 @@
 package controllers
 
-type Icontrollers interface{}
+type Icontrollers interface {
+	Start()
+}

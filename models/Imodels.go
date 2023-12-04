@@ -1,3 +1,5 @@
 package models
 
-type Imodels interface{}
+type Imodels interface {
+	Start(cs string, p string)
+}

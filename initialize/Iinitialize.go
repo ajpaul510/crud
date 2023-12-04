@@ -1,9 +1,9 @@
 package initialize
 
-type Iinitialize interface{
+type Iinitialize interface {
 	Init(env string) (string, string)
 	GetConnectionString() string
 	GetPort() string
 	SetConnectionString(cs string)
-	SetPort(p int) 
+	SetPort(p int)
 }

@@ -1,26 +1,29 @@
 package controllers
 
 import (
-	"net/http"
+	"crud/initialize"
+	"crud/models"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Start() {
+type Controllers struct {
+}
+
+func (_ Controllers) Start() {
+	env := "dev"
+	config := initialize.AppSettings{}
+	model := models.Models{}
+	connstr, port := config.Init(env)
+	model.Start(connstr, port)
+
 	router := gin.Default()
 
 	// GET
+	router.GET("/user", models.GetUser)
 
 	// POST
-	router.POST("/authentication", authentication)
+	router.POST("/user", models.PostUser)
+
 	router.Run("localhost:8080")
 }
-
-func authentication(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, nil)
-}
-
-// // getAlbums responds with the list of all albums as JSON.
-// func getAlbums(c *gin.Context) {
-// 	c.IndentedJSON(http.StatusOK, albums)
-// }
